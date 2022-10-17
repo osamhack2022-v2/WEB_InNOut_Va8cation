@@ -15,7 +15,7 @@
         <form class>
           <div class="form-group">
             <label for="exampleInputEmail1"><b>아이디</b></label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
               placeholder="username">
           </div>
           <div class="form-group">
@@ -30,7 +30,8 @@
       </div>
       <div class="callout mt-3 p-4">
         처음이신가요?
-        <a href="#!">계정 만들기</a>
+        <!--<a href="#!">계정 만들기</a>-->
+        <router-link to="/signup">계정 만들기</router-link>
       </div>
     </main>
   </div>
@@ -38,11 +39,33 @@
 </template>
 
 <script>
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+
 export default {
-  name: "MyLogin",
+  name: 'MyLogin',
   data() {
+    return{
+
+    }
+  },
+  methods: {
+    login() {
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+      // eslint-disable-next-line no-unused-vars  
+      function(user){
+          alert('로그인 완료')
+          this.$router.replace('home')
+        },
+        function(err) {
+          alert('에러 : '+ err.message)
+        }
+      )
+      
+    }
   }
-};
+}
 </script>
 
 <style scoped lang="scss">

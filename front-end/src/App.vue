@@ -2,7 +2,7 @@
   <div id="app">
     <nav>
       <router-link to="/login">MyLogin</router-link> |
-      <router-link to="/join">JoinPage</router-link> |
+      <router-link to="/signup">JoinPage</router-link> |
       <router-link to="/passwordreset">PasswordReset</router-link> |
       <router-link to="/">HomePage</router-link> |
       <router-link to="/outstatus">OutStatus</router-link> |
@@ -15,7 +15,7 @@
 // import HomePage from './components/HomePage.vue';
 // import MyLogin from './components/MyLogin.vue'
 // import PasswordReset from './components/passwordreset.vue'
-
+// import signUp from './components/JoinPage.vue'
 export default {}
 </script>
 

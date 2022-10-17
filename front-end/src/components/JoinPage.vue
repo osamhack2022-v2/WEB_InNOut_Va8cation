@@ -19,17 +19,34 @@
               <label for="checkbox">{{ checked }}</label>
               <label for="exampleInputEmail1">이용약관, 개인정보 수집 및 이용에 모두 동의합니다.</label>
             </label>
+
             <div class="el-input">
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="회원가입 시 등록한 이메일 주소">
+              <input type="text" v-model="email" class="form-control" id="exampleInputEmail1" placeholder="회원가입 시 등록한 이메일 주소">
             </div>
             <span class="text-muted"></span>
           </div>
+
           <div class="form-group">
             <label for="exampleInputPassword1"><b>인증번호</b></label>
             <div class = "el-input">
-              <input type="password" class="form-control" id="exampleInputAuthnumber">
+              <input type="text" class="form-control" id="exampleInputAuthnumber">
             </div>
           </div>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1"><b>비밀번호</b></label>
+            <div class = "el-input">
+              <input type="password" v-model="password" class="form-control" id="PasswordInput" placeholder="비밀번호">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1"><b>비밀번호 확인</b></label>
+            <div class = "el-input">
+              <input type="text" class="form-control" id="PasswordInputCheck">
+            </div>
+          </div>
+          <button v-on:click="signUp"><router-link to="/">가입하기</router-link> </button>
         </form>
       </div>
     </main>
@@ -37,9 +54,35 @@
 </template>
 
 <script>
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+
 export default {
-  name: "PasswordReset",
+  name: "signUp",
   data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+
+  methods: {
+    signUp() {
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+        .then((userCredential) => {
+            // Signed in
+            // eslint-disable-next-line no-unused-vars  
+             var user = userCredential.user;
+    // ...
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-unused-vars  
+          var errorCode = error.code;
+          // eslint-disable-next-line no-unused-vars  
+          var errorMessage = error.message;
+        });
+    }
   }
 };
 </script>
