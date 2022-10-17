@@ -16,7 +16,7 @@
           <div class="form-group mb-4">
             <label for="exampleInputEmail1"><b>이메일</b></label>
             <div class="el-input">
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="회원가입 시 등록한 이메일 주소">
+              <input type="email" v-model="email" class="form-control" id="exampleInputEmail1" placeholder="회원가입 시 등록한 이메일 주소">
             </div>
             <span class="text-muted"></span>
             <button type="submit" class="btn btn-primary btn-block"><b>인증번호 받기</b></button>

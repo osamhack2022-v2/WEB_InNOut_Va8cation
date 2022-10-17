@@ -15,7 +15,7 @@
         <form class>
           <div class="form-group">
             <label for="exampleInputEmail1"><b>아이디</b></label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            <input type="text" v-model="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
               placeholder="username">
           </div>
           <div class="form-group">
@@ -23,9 +23,9 @@
               <label for="exampleInputPassword1"><b>비밀번호</b></label>
               <a href="#!">비밀번호 찾기</a>
             </div>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password">
+            <input type="password" v-model="password" class="form-control" id="exampleInputPassword1" placeholder="password">
           </div>
-          <button type="submit" class="btn btn-primary btn-block"><b>로그인</b></button>
+          <button v-on:click="signIn"><b>로그인</b></button>
         </form>
       </div>
       <div class="callout mt-3 p-4">
@@ -44,25 +44,27 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
 export default {
-  name: 'MyLogin',
+  name: 'signIn',
   data() {
     return{
-
+      email: '',
+      password: ''
     }
   },
   methods: {
-    login() {
+    signIn() {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-      // eslint-disable-next-line no-unused-vars  
-      function(user){
+        // eslint-disable-next-line no-unused-vars  
+        function(user){
           alert('로그인 완료')
-          this.$router.replace('home')
         },
-        function(err) {
+        function(err){
           alert('에러 : '+ err.message)
         }
-      )
-      
+      );
+    },
+    onClick() {
+      alert('클릭됨!' + this.email + this.password)
     }
   }
 }

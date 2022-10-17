@@ -63,25 +63,25 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '' //비밀번호는 최소 6자리
     }
   },
 
   methods: {
     signUp() {
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-        .then((userCredential) => {
-            // Signed in
-            // eslint-disable-next-line no-unused-vars  
-             var user = userCredential.user;
-    // ...
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-unused-vars  
-          var errorCode = error.code;
-          // eslint-disable-next-line no-unused-vars  
-          var errorMessage = error.message;
-        });
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+        // eslint-disable-next-line no-unused-vars 
+        function(user) {
+          alert('회원가입 완료!')
+        },
+        function(err){
+          alert('error: ' + err.message)
+        }
+      )
+    },
+
+    clickOn() {
+      alert('클릭됨')
     }
   }
 };

@@ -18,10 +18,10 @@ var firebaseConfig = {
     authDomain: "inandout-8434d.firebaseapp.com",
     databaseURL: "https://inandout-8434d-default-rtdb.firebaseio.com",
     projectId: "inandout-8434d",
-    storageBucket: "inandout-8434d.appspot.com",
+    storageBucket: "",
     messagingSenderId: "128146842247",
     appId: "1:128146842247:web:c8d833e592eba5ae258e22",
-    //measurementId: "G-9431XGBXCY"
+    measurementId: "G-9431XGBXCY"
 };
   
 // Use this to initialize the firebase App
