@@ -90,18 +90,23 @@ export default {
         alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
         return;
       }
+    
       
-
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-        //eslint-disable-next-line no-unused-vars 
-        () => {
-          alert('회원가입 완료!');
-          this.$router.push('/login');
-        })
-        .catch(error => {
-          alert('error: ' + error.code + error.message)
-          
-        });
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).catch(function(error) {
+       // Handle Errors here.
+       var errorCode = error.code;
+       var errorMessage = error.message;
+       if (errorCode == 'auth/weak-password') {
+          alert('The password is too weak.');
+       } 
+       else {
+         alert(errorMessage);
+       }
+       console.log(error);
+       return;
+      });
+      console.log("회원가입 완료!");
+      this.$router.push('/');
         
     },
 

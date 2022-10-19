@@ -28,7 +28,7 @@
             </div>
             <a href="#!" class="txt-btn">인증번호 확인</a>
           </div>
-          <button type="submit" class="btn btn-primary btn-block"><b>비밀번호 초기화</b></button>
+          <button type="submit" v-on:click="PWReset" class="btn btn-primary btn-block"><b>비밀번호 초기화</b></button>
         </form>
       </div>
     </main>
@@ -36,11 +36,35 @@
 </template>
 
 <script>
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+
 export default {
   name: "PasswordReset",
   data() {
+  },
+  methods: {
+    PWReset() {
+      firebase.auth().sendPasswordResetEmail(this.email).then(
+        // eslint-disable-next-line no-unused-vars
+        function(){
+          alert('이메일이 발송되었습니다.');
+          this.$router.push('/');
+        },
+        function(err){
+          alert('에러 : '+ err.message)
+        }
+      );
+    },
+    
+    onClick() {
+      alert('클릭됨!' + this.email)
+    }
   }
 };
+
+  
 </script>
 
 

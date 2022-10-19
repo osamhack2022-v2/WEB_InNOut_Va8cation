@@ -53,15 +53,17 @@ export default {
   },
   methods: {
     signIn() {
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-        // eslint-disable-next-line no-unused-vars
-        function(){
-          alert('로그인 완료')
-        },
-        function(err){
-          alert('에러 : '+ err.message)
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode === 'auth/wrong-password') {
+          alert('Wrong password.');
+        } else {
+          alert(errorMessage);
         }
-      );
+        console.log(error);
+      });
     },
     onClick() {
       alert('클릭됨!' + this.email + this.password)

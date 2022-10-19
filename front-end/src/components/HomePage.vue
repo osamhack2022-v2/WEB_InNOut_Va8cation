@@ -7,16 +7,16 @@
       <div class="container-fluid">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">홈<span class="sr-only"></span></a>
+            <a class="nav-link" href="/home">홈<span class="sr-only"></span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">출타현황</a>
+            <a class="nav-link" href="/outstatus">출타현황</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">휴가/상점입력</a>
+            <a class="nav-link" href="/pointapply">휴가/상점입력</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">휴가/상점현황</a>
+            <a class="nav-link" href="/pointstatus">휴가/상점현황</a>
           </li>
         </ul>
         <div class="Header-item position-relative">
