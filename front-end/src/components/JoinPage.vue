@@ -28,25 +28,25 @@
 
           <div class="form-group">
             <label for="exampleInputPassword1"><b>인증번호</b></label>
-            <div class = "el-input">
+            <div class="el-input">
               <input type="text" class="form-control" id="exampleInputAuthnumber">
             </div>
           </div>
 
           <div class="form-group">
             <label for="exampleInputPassword1"><b>비밀번호</b></label>
-            <div class = "el-input">
+            <div class="el-input">
               <input type="password" v-model="password" class="form-control" id="PasswordInput" placeholder="비밀번호">
             </div>
           </div>
 
           <div class="form-group">
             <label for="exampleInputPassword1"><b>비밀번호 확인</b></label>
-            <div class = "el-input">
-              <input type="text" class="form-control" id="PasswordInputCheck">
+            <div class="el-input">
+              <input type="password" v-model="confirm" class="form-control" id="PasswordInputCheck">
             </div>
           </div>
-          <button v-on:click="signUp"><router-link to="/">가입하기</router-link> </button>
+          <button v-on:click="signUp">가입하기</button>
         </form>
       </div>
     </main>
@@ -63,22 +63,49 @@ export default {
   data() {
     return {
       email: '',
-      password: '' //비밀번호는 최소 6자리
+      password: '', //비밀번호는 최소 6자리
+      confirm: ''
     }
   },
 
   methods: {
     signUp() {
+      console.log("Signup", this.email, this.password, this.confirm);
+      if(!this.email) {
+        alert("입력된 email 주소가 없습니다.");
+        return;
+      }
+
+      if(!this.password) {
+        alert("입력된 비밀번호가 없습니다.");
+        return;
+      }
+
+      if(!this.confirm) {
+        alert("입력된 비밀번호 확인이 없습니다.");
+        return;
+      }
+
+      if(this.password != this.confirm) {
+        alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+        return;
+      }
+      
+
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-        // eslint-disable-next-line no-unused-vars 
-        function(user) {
-          alert('회원가입 완료!')
-        },
-        function(err){
-          alert('error: ' + err.message)
-        }
-      )
+        //eslint-disable-next-line no-unused-vars 
+        () => {
+          alert('회원가입 완료!');
+          this.$router.push('/login');
+        })
+        .catch(error => {
+          alert('error: ' + error.code + error.message)
+          
+        });
+        
     },
+
+    
 
     clickOn() {
       alert('클릭됨')

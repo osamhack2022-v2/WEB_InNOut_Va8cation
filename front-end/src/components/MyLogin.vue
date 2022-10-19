@@ -54,8 +54,8 @@ export default {
   methods: {
     signIn() {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-        // eslint-disable-next-line no-unused-vars  
-        function(user){
+        // eslint-disable-next-line no-unused-vars
+        function(){
           alert('로그인 완료')
         },
         function(err){
