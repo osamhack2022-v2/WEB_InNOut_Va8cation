@@ -1,8 +1,8 @@
 <template>                                                                                        <!--회원가입 정보 입력 페이지-->
   <div class="text-center pt-5 pb-4">
-    <a href="#">
+    <router-link to="/">                                                                           <!--상단 로고 클릭시 로그인 페이지로 돌아감-->
       <img src="@/assets/images/logo_32_blue.svg" width="64" height="64" alt="">
-    </a>
+    </router-link>
   </div>
   <div class="container-fluid col-8">
     <main>
